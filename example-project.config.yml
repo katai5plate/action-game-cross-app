@@ -1,0 +1,38 @@
+# メタ設定
+meta:
+  # ゲームタイトル
+  title: Example Game
+  # 省略したゲームタイトル (ホーム画面でのアプリ名)
+  shortTitle: Game
+  # ゲームの短い説明文
+  description: This is The Example Game.
+  # アプリケーション ID (アプリデプロイに必要)
+  applicationId: xxx.xxx.xxx
+  # アプリバージョン
+  version: 0.0.1
+  # 開発者情報
+  author:
+    - email: abc@def.com
+      href: https://#your?homepage
+
+# ゲームエンジン設定
+engine:
+  # ゲーム画面の横幅
+  width: 480
+  # ゲーム画面の縦幅
+  height: 640
+  # リサイズ時にデバイス画面のどの大きさを基準に引き延ばすか
+  # width -> デバイス画面の横幅に合わせる
+  # height -> デバイス画面の縦幅に合わせる
+  # fit -> 強制的にデバイス画面に合わせる (歪み注意)
+  # none -> 合わせない (はみ出し注意)
+  resize: width
+
+# 環境設定
+environment:
+  # Android SDK 設定
+  android-sdk:
+    # Android SDK の場所
+    path: C:\Users\{username}\AppData\Local\Android\Sdk
+    # ビルドに使用する Android SDK のバージョン
+    version: 30.0.3

@@ -1,0 +1,25 @@
+body {
+  background-color: rgb(43, 43, 43);
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  position: absolute !important;
+  margin: auto !important;
+  top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+}
+canvas.resize-width {
+  width: 100% !important;
+  height: auto !important;
+}
+canvas.resize-height {
+  width: 100% !important;
+  height: auto !important;
+}
+canvas.resize-fit {
+  width: 100% !important;
+  height: 100% !important;
+}
