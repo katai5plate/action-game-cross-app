@@ -12,8 +12,12 @@ meta:
   version: 0.0.1
   # 開発者情報
   author:
-    - email: abc@def.com
-      href: https://#your?homepage
+    email: abc@def.com
+    href: https://#your?homepage
+  # 許可する外部 URL (ワイルドカード可)
+  # https://*/* -> HTTPS の全てのサイト
+  allow-href:
+    - https://www.google.com
 
 # ゲームエンジン設定
 engine:
@@ -27,6 +31,11 @@ engine:
   # fit -> 強制的にデバイス画面に合わせる (歪み注意)
   # none -> 合わせない (はみ出し注意)
   resize: width
+  # 画面の向き
+  # portrait -> 縦
+  # landscape -> 横
+  # all -> デバイスに連動 (はみ出し注意)
+  orientation: portrait
 
 # 環境設定
 environment:
@@ -36,3 +45,22 @@ environment:
     path: C:\Users\{username}\AppData\Local\Android\Sdk
     # ビルドに使用する Android SDK のバージョン
     version: 30.0.3
+  # AdMob 広告設定
+  # テスト用のユニット ID 一覧: https://developers.google.com/admob/android/test-ads#demo_ad_units
+  admob:
+    # Admob を有効化するか？
+    # false -> 無効にする
+    # true -> 有効化する (下記のアプリ ID と ユニット ID が必要)
+    enable: false
+    # アプリ ID
+    app-id: ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
+    # 起動時広告のユニット ID
+    app-open: ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+    # バナー広告のユニット ID
+    banner: ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+    # インタースティシャル広告のユニット ID
+    interstitial: ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+    # リワード広告のユニット ID
+    rewarded: ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+    # リワードインタースティシャル広告のユニット ID
+    rewarded-interstitial: ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX

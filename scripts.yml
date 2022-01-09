@@ -1,43 +1,55 @@
 install:
-  help: setup cordova
+  help: cordova のセットアップ
+  alias: i
   commands:
+    - npx rimraf platforms plugins
     - npx cordova platform add android
-    # - npx cordova platform add ios
-    # - npx cordova platform add browser
-    # - npx cordova platform add electron
-    # - npx cordova platform add windows
+    - node scripts/addAdmob
+    - node scripts/genConf
 
 build:
-  help: build
+  help: ビルド
   commands:
     - node scripts/genConf
     - npx webpack
 
 dev:
-  help: compile sources
+  help: リアルタイムビルド
   commands:
     - node scripts/genConf
     - npx webpack -w
 
 tp-nw:
-  help: testplay for nw.js
+  help: NW.js でテストプレイ
+  alias: tpn
   commands:
     - npm start build
     - npx nw
 
 tp-android:
-  help: testplay for android devices
+  help: Android 実機でテストプレイ
+  alias: tpa
   commands:
     - npm start build
     - npx cordova run android
 
-clean:
-  help: re-install cordova files
+tp-android-direct:
+  help: cordova run android のみ実行
+  alias: tpad
   commands:
-    - npx rimraf platforms
-    - npm run install
+    - npx cordova run android
 
 test:
-  help: testing
+  help: テストコード実行
   commands:
     - npx react-scripts test
+
+android-log:
+  help: Android 実機のログを確認
+  commands:
+    - adb logcat chromium:V *:S Ads:* AdMobPlus:*
+
+android-log-all:
+  help: Android 実機のログをフルで確認
+  commands:
+    - adb logcat

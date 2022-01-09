@@ -6,18 +6,33 @@ import reportWebVitals from "./libs/reportWebVitals";
 import "./css/index.css";
 import "./types/globals";
 
-const { title } = window.WEBPACK_VARIABLES.meta;
+import CordovaProvider from "./providers/CordovaProvider";
 
-document.title = title;
+function start() {
+  const { title } = window.WEBPACK_VARIABLES.meta;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.title = title;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  ReactDOM.render(
+    <React.StrictMode>
+      <CordovaProvider>
+        <App />
+      </CordovaProvider>
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+
+  // If you want to start measuring performance in your app, pass a function
+  // to log results (for example: reportWebVitals(console.log))
+  // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+  reportWebVitals();
+}
+
+(async () => {
+  try {
+    const res = await fetch("./cordova.js");
+    if (res.status === 404) throw new Error();
+    eval(await res.text());
+  } catch {}
+  start();
+})();

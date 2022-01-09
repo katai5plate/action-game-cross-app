@@ -10,7 +10,7 @@ module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "./www"),
+    path: path.resolve(__dirname, "./www/js"),
     filename: "index.js",
   },
   module: {
@@ -32,6 +32,9 @@ module.exports = {
       {
         test: /\.(ico|svg|jpe?g|png|bmp|gif|mp3|ogg|wav)$/,
         type: "asset/resource",
+        generator: {
+          filename: "img/[hash][ext][query]",
+        },
       },
     ],
   },
@@ -49,6 +52,16 @@ module.exports = {
           width: conf.engine.width,
           height: conf.engine.height,
           resize: conf.engine.resize,
+        },
+        environment: {
+          admob: {
+            appOpen: conf.environment.admob["app-open"],
+            banner: conf.environment.admob["banner"],
+            interstitial: conf.environment.admob["interstitial"],
+            rewarded: conf.environment.admob["rewarded"],
+            rewardedInterstitial:
+              conf.environment.admob["rewarded-interstitial"],
+          },
         },
       }),
     }),

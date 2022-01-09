@@ -1,5 +1,10 @@
 # action-game-cross-app
 
+TypeScript + React + Pixi.js + NW.js + Cordova を使って、  
+クロスプラットフォームなアクションゲームを作るプロジェクト。
+
+WEB / Windows / Android 向けにデプロイ可能。
+
 ## インストール
 
 ### 必要なもの
@@ -31,7 +36,7 @@
 
 1. `git clone --depth 1 https://github.com/katai5plate/action-game-cross-app.git`
 2. プロジェクトを VSCode で開き、ターミナルを開く
-3. `npm i && npm start install`
+3. `npm i && npm start i`
 
 ### Android Studio を使用した Android 開発環境の構築
 
@@ -59,7 +64,18 @@
   - `src` ディレクトリのソースをビルド
 - `npm start dev`
   - `src` ディレクトリのソースを監視しリアルタイムにビルド
-- `npm start tp-nw`
+- `npm start tp-nw` (`tpn`)
   - 実行ファイルでのテストプレイ
-- `npm start tp-android`
+- `npm start tp-android` (`tpa`)
   - Android 実機でテストプレイ (要 USB デバッグ)
+
+### Chrome DevTools で実機デバッグ
+
+1. `adb devices` で USB デバッグされた端末が接続されていることを確認する
+2. Google Chrome で chrome://inspect/#devices にアクセス
+3. デバッグ端末の該当するプロパティを選び `inspect` をクリック
+
+### 動作がおかしいと思ったら
+
+1. `node_modules` `platforms` `plugins` を削除する
+2. `npm i && npm start i` を実行する

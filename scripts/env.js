@@ -1,4 +1,3 @@
-const { exec } = require("./utils");
 const { parse } = require("yaml");
 const { environment: env } = parse(
   require("fs").readFileSync("./project.config.yml", {
@@ -17,5 +16,3 @@ if (env) {
       .join(";");
   process.env.ORG_GRADLE_PROJECT_cdvBuildToolsVersion = version;
 }
-
-exec(require("minimist")(process.argv.slice(2))._[0]);
