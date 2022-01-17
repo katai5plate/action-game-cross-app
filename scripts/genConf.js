@@ -3,20 +3,32 @@ const { writeFileSync, readFileSync } = require("fs");
 const { paramCase } = require("param-case");
 
 const {
-  meta: { title, shortTitle, description, applicationId, version, author },
+  meta: {
+    title,
+    shortTitle,
+    description,
+    applicationId,
+    version,
+    author,
+    ...rest
+  },
   engine: { width, height, orientation },
 } = openYAML("./project.config.yml");
 
 const camelTitle = paramCase(title);
+const INDENT = "    ";
 
 const configXml = `
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="${applicationId}" version="${version}" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>${shortTitle}</name>
     <description>${description}</description>
-    <author email="${email}" href="${href}"></author>
-    <content src="index.html" />
+    <author email="${author.email}" href="${author.href}"></author>
     <preference name="Orientation" value="${orientation}" />
+${(rest["allow-href"] || [])
+  .filter(Boolean)
+  .map((x) => `${INDENT}<allow-intent href="${x}" />`)}
+    <content src="index.html" />
 </widget>
 `;
 writeFileSync("./config.xml", configXml);

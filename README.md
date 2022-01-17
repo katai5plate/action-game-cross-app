@@ -79,3 +79,28 @@ WEB / Windows / Android 向けにデプロイ可能。
 
 1. `node_modules` `platforms` `plugins` を削除する
 2. `npm i && npm start i` を実行する
+
+### アトミック構想
+
+- App (ゲーム本体)
+- Router (場面遷移)
+- Scene (場面)
+- Layer (描画グループ)
+  - Vistas (遠景)
+  - World (ゲームの世界)
+    - Groups (オブジェクトのセット)
+    - Bodies (イベント付きオブジェクト)
+      - Entities (物理オブジェクト)
+        - Atlas (アトラス素材)
+        - Tiles (タイル素材)
+  - Effects (特殊効果)
+    - Particles (パーティクルアニメーション)
+      - Parts (パーティクルの粉)
+    - Audio (音声)
+      - BGM / Ambient / SE
+  - UI (ユーザーインタフェース)
+    - Pages (画面)
+    - Templates (原子・分子・有機体のセット)
+    - Organisms (ギミック付き有機体)
+    - Molecules (分子)
+    - Atoms (原子)

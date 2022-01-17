@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as PIXI from "pixi.js";
+
 import App from "./App";
 import reportWebVitals from "./libs/reportWebVitals";
 
@@ -7,16 +9,33 @@ import "./css/index.css";
 import "./types/globals";
 
 import CordovaProvider from "./providers/CordovaProvider";
+import { AppProvider as PixiProvider, Stage } from "@inlet/react-pixi";
+import InputProvider from "./providers/InputProvider";
 
 function start() {
-  const { title } = window.WEBPACK_VARIABLES.meta;
+  const {
+    engine: { width, height, resize },
+    meta: { title },
+  } = window.WEBPACK_VARIABLES;
 
   document.title = title;
 
   ReactDOM.render(
     <React.StrictMode>
       <CordovaProvider>
-        <App />
+        <InputProvider>
+          <PixiProvider value={new PIXI.Application()}>
+            <Stage
+              id="main-screen"
+              className={`resize-${resize}`}
+              width={width}
+              height={height}
+              options={{ backgroundColor: 0xffaa00 }}
+            >
+              <App />
+            </Stage>
+          </PixiProvider>
+        </InputProvider>
       </CordovaProvider>
     </React.StrictMode>,
     document.getElementById("root")
